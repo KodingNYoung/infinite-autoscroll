@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infinite Carousel</title>
+
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <div class="carousel-container">
+    <div class="carousel-slider-container">
+      <div class="carousel-slider" data-slider="1">
+        <div class="slide-item">
+          <img class="slide-image" src="./img/iso.png" alt="" />
+        </div>
+        <div class="slide-item">
+          <img class="slide-image" src="./img/soc2.png" alt="" />
+        </div>
+        <div class="slide-item">
+          <img class="slide-image" src="./img/gdpr.png" alt="" />
+        </div>
+        <div class="slide-item">
+          <img class="slide-image" src="./img/smartcomply.png" alt="" />
+        </div>
+        <div class="slide-item">
+          <img class="slide-image" src="./img/wired.png" alt="" />
+        </div>
+      </div>
+      <div class="carousel-slider">
+        <div class="slide-item">
+          <img class="slide-image" src="./img/iso.png" alt="" />
+        </div>
+        <div class="slide-item">
+          <img class="slide-image" src="./img/soc2.png" alt="" />
+        </div>
+        <div class="slide-item">
+          <img class="slide-image" src="./img/gdpr.png" alt="" />
+        </div>
+        <div class="slide-item">
+          <img class="slide-image" src="./img/smartcomply.png" alt="" />
+        </div>
+        <div class="slide-item">
+          <img class="slide-image" src="./img/wired.png" alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <button id="playBtn">click me</button>
+
+
+  <script>
+    const playBtn = document.getElementById("playBtn");
+    const sliderContainer = document.querySelector(".carousel-slider-container");
+    const sliders = document.querySelectorAll(".carousel-slider");
+
+
+    playBtn.addEventListener('click', () => {
+      sliders.forEach(slider => {
+        slider.classList.toggle("animate")
+        slider.addEventListener("animationend", () => {
+          sliderContainer.appendChild(slider);
+        })
+      })
+    })
+
+
+  </script>
+</body>
+
+</html>

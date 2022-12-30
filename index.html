@@ -11,6 +11,35 @@
 </head>
 
 <body>
+  <header>
+    <h2>Config</h2>
+    <div class="form-container">
+      <div class="field-group">
+        <p>Speed:</p>
+        <label for="5" class="radio-item">
+          <input type="radio" id="5" name="speed" value="5" checked>
+          <span>5</span>
+        </label>
+        <label class="radio-item" for="10">
+          <input type="radio" id="10" name="speed" value="10">
+          <span>10</span>
+        </label>
+        <label for="15" class="radio-item">
+          <input type="radio" id="15" name="speed" value="15">
+          <span>15</span>
+        </label>
+        <label for="20" class="radio-item">
+          <input type="radio" id="20" name="speed" value="20">
+          <span>20</span>
+        </label>
+      </div>
+      <div class="field-group">
+        <div><label for="no-of-slider-content">No of slides</label></div>
+        <input type="number" name="noOfSlides" id="no-of-slider-content" min="5">
+      </div>
+    </div>
+  </header>
+  <h2>Result</h2>
   <div class="carousel-container">
     <div class="carousel-slider-container">
       <div class="carousel-slider" data-slider="1">
@@ -45,23 +74,67 @@
       </div>
     </div>
   </div>
-  <button id="playBtn">click me</button>
 
 
   <script>
-    const playBtn = document.getElementById("playBtn");
     const sliderContainer = document.querySelector(".carousel-slider-container");
     const sliders = document.querySelectorAll(".carousel-slider");
+    const header = document.querySelector("header");
+    const speedControls = document.querySelectorAll("input[name=speed]");
 
+    // states
+    let state = {
+      speed: 5,
 
-    playBtn.addEventListener('click', () => {
+    }
+
+    // state setters
+    const setState = (name, value) => {
+      state = { ...state, [name]: Number(value) }
+      handleAnimationTigger();
+    }
+
+    // functions
+    const containerWidth = () => sliderContainer.clientWidth;
+    const sliderWidth = () => sliders[0].clientWidth
+    const startAnimation = () => {
       sliders.forEach(slider => {
-        slider.classList.toggle("animate")
+        slider.style.animation = `scroll ${50 / state.speed}s linear forwards`;
         slider.addEventListener("animationend", () => {
           sliderContainer.appendChild(slider);
         })
       })
+    }
+    const stopAnimation = (slider) => {
+      sliders.forEach(slider => slider.style.animation = "none")
+    }
+    const handleAnimationTigger = () => {
+      if (sliderWidth() > containerWidth()) {
+        startAnimation()
+      } else {
+        stopAnimation();
+      }
+    }
+
+    // handle configs
+    const handleSpeedChange = (e) => {
+      setState(e.target.name, e.target.value)
+    }
+
+
+
+    // set this slider container width to fit just one of the sliders.
+    window.addEventListener("DOMContentLoaded", () => {
+      sliderContainer.style.width = `${sliders[0].clientWidth}px`
+      header.style.width = `${sliders[0].clientWidth}px`
+      handleAnimationTigger()
     })
+    // when ever the window is resized
+    window.addEventListener('resize', () => {
+      handleAnimationTigger()
+    })
+    speedControls.forEach(speedControl => speedControl.addEventListener("change", handleSpeedChange))
+
 
 
   </script>

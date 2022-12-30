@@ -1,3 +1,17 @@
+body {
+  font-family: sans-serif;
+}
+header {
+  max-width: 100%;
+  margin: 2rem auto;
+}
+header .field-group {
+  margin: 2rem 0;
+}
+header .radio-item {
+  display: inline-block;
+  margin-right: 1rem ;
+}
 .carousel-container {
   width: 100%;
   margin: 2rem auto;
@@ -7,7 +21,6 @@
 }
 .carousel-slider-container {
   max-width: 100%;
-  width:830px;
   display: flex;
   align-items: center;
   overflow-x: hidden;
@@ -17,14 +30,8 @@
   flex: 0 0 auto;
   display: flex;
   align-items: center;
-  width: fit-content;
-  position: relative;
-  transform: translateX(0);
-  transition: transform 10s linear;
 }
-.carousel-slider.animate {
-  animation: scroll 10s linear forwards;
-}
+
 /* pause on hover */
 .carousel-slider-container:hover .carousel-slider {
   -webkit-animation-play-state: paused;
@@ -36,10 +43,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: .5rem;
+  margin: 0.5rem;
   font-size: 5rem;
   color: #fff;
-  font-family: sans-serif;
 }
 
 @keyframes scroll {

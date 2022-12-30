@@ -7,7 +7,7 @@
 }
 .carousel-slider-container {
   max-width: 100%;
-  width:750px;
+  width:830px;
   display: flex;
   align-items: center;
   overflow-x: hidden;
@@ -32,9 +32,14 @@
 .carousel-slider .slide-item {
   width: 150px;
   min-width: 150px;
+  height: 150px;
   display: flex;
   justify-content: center;
-
+  align-items: center;
+  margin: .5rem;
+  font-size: 5rem;
+  color: #fff;
+  font-family: sans-serif;
 }
 
 @keyframes scroll {
